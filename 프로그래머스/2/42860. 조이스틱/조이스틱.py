@@ -23,8 +23,19 @@ def solution(name):
         while nextIndex < len(name) and name[nextIndex] == 'A':
             nextIndex += 1 
             
-        # 좌우 이동 최솟값 갱신
-        distance = min(i * 2 + len(name) - nextIndex, i + (len(name) - nextIndex) * 2)
+        # 좌우 이동의 최소 이동
+        move_forward_and_back = i * 2 + (len(name) - nextIndex)
+        # "BBAAAABBB"이면 오른쪽으로 갔다가 돌아가는게 이득임, 중간 A들 건들 필요없이 
+        # 오른쪽으로 1번 가서 B쓰고, 다시 왼쪽으로 4번 가서 차례대로 끝쪽 B쓰면 총 5번만 움직이면 됨.
+        # (근데 왼쪽 갔다가 오른쪽으로 가면, 왼쪽 3번, 오른쪽 4번, 총 7번임.)
+        # (계속 오른쪽으로 쭉 갔다면, 8번 가야 맨 끝 끝쪽 B쓸 수 있음)
+        # (오른쪽으로 쭉가는 건 맨처음 minMove에 저장해놓음. minMove= len(name) - 1로)
+        move_backward_then_forward = i + (len(name) - nextIndex) * 2
+        # "BBBAAAB"이면 뒤로 돌아서 왼쪽으로 먼저갔다가 오른쪽으로 가는게 빠름.
+        # 왼쪽으로 먼저 가면 왼쪽 1번, 오른쪽 3번, 총 4번임
+        # (근데 오른쪽 갔다가 왼쪽 뒤로 돌아가면, 오른쪽 2번 왼쪽 3번, 총 5번임.)        
+        distance = min(move_forward_and_back, move_backward_then_forward)
+        
         minMove = min(minMove, distance)
     
     answer += minMove
