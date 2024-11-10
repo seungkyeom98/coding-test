@@ -11,7 +11,7 @@ def solution(n):
     # fibo[7]=13
     i=2
     while True:
-        fibo.append(fibo[i-1]+fibo[i-2])
+        fibo.append(fibo[i-1]+fibo[i-2]) #피보나치 구현.
         i+=1
         if len(fibo)==(n+1):
             # fIndex=fibo.index(n)
