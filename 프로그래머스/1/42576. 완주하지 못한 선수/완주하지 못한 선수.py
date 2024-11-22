@@ -5,4 +5,6 @@ from collections import Counter
 #Counter 객체끼리 덧셈, 뺄셈, 교집합, 합집합 연산이 가능
 
 def solution(participant, completion):
-    return list(Counter(participant) - Counter(completion))[0]
+    #print(Counter(participant), list(Counter(participant))) 
+    # 출력해보면, 자료형이 달라서, 출력결과가 다르다.
+    return list(Counter(participant) - Counter(completion))[0] #리스트 형식으로 반환해야, 정답이라 인식함
